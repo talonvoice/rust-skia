@@ -150,12 +150,12 @@ extern "C" const GrGLInterface* C_GrGLInterface_MakeAssembledInterface(void *ctx
 // gpu/GrDirectContext.h
 //
 
-extern "C" GrDirectContext* C_GrDirectContext_MakeGL(GrGLInterface* interface, const GrContextOptions* options) {
-    if (interface) {
+extern "C" GrDirectContext* C_GrDirectContext_MakeGL(GrGLInterface* iface, const GrContextOptions* options) {
+    if (iface) {
         if (options) {
-            return GrDirectContexts::MakeGL(sp(interface), *options).release();
+            return GrDirectContexts::MakeGL(sp(iface), *options).release();
         }
-        return GrDirectContexts::MakeGL(sp(interface)).release();
+        return GrDirectContexts::MakeGL(sp(iface)).release();
     }
     if (options) {
         return GrDirectContexts::MakeGL(*options).release();
